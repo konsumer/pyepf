@@ -35,3 +35,4 @@ I think it could be further improved with a few things:
 - nicer progress-bar
 - verify data. I notice I get a few more skips (like I get 1 on artist) so it should all be compared with [epf-collector](https://github.com/konsumer/epf-collector)
 - direct download/update (to s3)?
+- I tried with [indexed_bzip2](https://github.com/mxmlnkn/indexed_bzip2) for a full-pyhton solution, but it was much slower than pbzip2  (6K/s vs 100K/s.) It would be cool if this was closer, but it might nto be possible

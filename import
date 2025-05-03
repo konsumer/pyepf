@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 # just convert all your EPF files to parquet
 
 duck=$(which duckdb)
@@ -18,7 +20,7 @@ for file in $(find data/epf -name '*.tbz');do
   $bunzip "${file}" | python3 epf2parquet.py "data/parquet/$name"
 
   # optional: import into duckdb
-  if [ -f "data/parquet/$name/part.0.parquet" && -n "${duck}" ];then
+  if [ -f "data/parquet/$name/part.0.parquet" ] && [ -n "${duck}" ];then
     echo "importing ${name} to duckdb"
     $duck data/epf.duckdb -c "CREATE TABLE ${name} AS SELECT * FROM read_parquet('data/parquet/$name/*.parquet');"
   fi

@@ -1,6 +1,6 @@
-I made [epf-collector](https://github.com/konsumer/epf-collector), but wanted to see if python/dask can do it faster (it can!)
-
 This will convert an EPF file to parquet files.
+
+I made [epf-collector](https://github.com/konsumer/epf-collector), but wanted to see if python/dask can do it faster (it can!)
 
 [pbzip2](https://github.com/ruanhuabin/pbzip2) is highly recommended. it's a lot faster than bunzip2.
 

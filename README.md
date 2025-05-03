@@ -9,6 +9,8 @@ source venv/bin/activate
 pip install -r requirements.txt
 
 # install pbzip2, however you do that
+# here is what I did, on mac:
+brew install pbzip2
 
 # assuming your data files are in data/epf this will just extract them all
 ./import

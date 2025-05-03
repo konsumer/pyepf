@@ -195,7 +195,7 @@ def stream_to_parquet_with_dask(header_info, output_file, file=sys.stdin, batch_
 
     # Create iterator with progress bar
     stream = parse_epf(header_info, file)
-    with tqdm(desc=f"Processing {header_info['name']}", unit="row", colour="green") as pbar:
+    with tqdm(desc=f"Processing {header_info['name']}", unit=" row") as pbar:
         while True:
             # Get a batch of rows
             current_batch = []

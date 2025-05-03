@@ -2,7 +2,24 @@
 
 # just convert all your EPF files to parquet
 
+duck=$(which duckdb)
+bunzip=$(which pbzip2)
+
+if [ -z "${bunzip}" ];then
+  echo "bunzip2 is slower, but can't find pbzip2"
+  bunzip="$(which bunzip2) -c"
+else
+  bunzip="${bunzip} -cd"
+fi
+
 for file in $(find data/epf -name '*.tbz');do
   name=$(basename "${file}" .tbz)
-  pbzip2 -cd "${file}" | python3 epf2parquet.py "data/parquet/$name"
+  echo importing $name
+  $bunzip "${file}" | python3 epf2parquet.py "data/parquet/$name"
+
+  # optional: import into duckdb
+  if [ -f "data/parquet/$name/part.0.parquet" && -n "${duck}" ];then
+    echo "importing ${name} to duckdb"
+    $duck data/epf.duckdb -c "CREATE TABLE ${name} AS SELECT * FROM read_parquet('data/parquet/$name/*.parquet');"
+  fi
 done

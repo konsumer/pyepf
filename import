@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# just convert all your EPF files to parquet
+
+for file in $(find data/epf -name '*.tbz');do
+  name=$(basename "${file}" .tbz)
+  pbzip2 -cd "${file}" | python3 epf2parquet.py "data/parquet/$name"
+done

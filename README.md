@@ -14,5 +14,5 @@ pip install -r requirements.txt
 ./import
 
 # if you just want to run it on a single file
-pbzip2 -cd data/epf/full/1745737200/itunes/application.tbz | python ./epf2parquet.py data/parquet/application
+pbzip2 -cd application.tbz | python ./epf2parquet.py out/application
 ```
